@@ -1,0 +1,101 @@
+{
+  "dataset": {
+    "name": "SMS Spam Collection (UCI id 228)",
+    "rows_raw": 5574,
+    "duplicate_rows_removed": 403,
+    "rows_used": 5171,
+    "train_rows": 4136,
+    "test_rows": 1035,
+    "sha256": "7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d"
+  },
+  "feature_config": {
+    "vectorizer": "TfidfVectorizer",
+    "max_features": 4000,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "min_df": 2,
+    "sublinear_tf": true
+  },
+  "random_seed": 42,
+  "test_size": 0.2,
+  "cv_folds": 5,
+  "selection_metric": "f1 (spam class), cross-validated on the training set only",
+  "models": {
+    "logistic_regression": {
+      "key": "logistic_regression",
+      "name": "Logistic Regression",
+      "cv_f1_spam": 0.9389,
+      "best_params": {
+        "clf__C": 5.0
+      },
+      "train_seconds": 8.8094,
+      "peak_memory_mb": 12.053,
+      "n_features": 4000,
+      "supports_probability": true
+    },
+    "decision_tree": {
+      "key": "decision_tree",
+      "name": "Decision Tree",
+      "cv_f1_spam": 0.8785,
+      "best_params": {
+        "clf__max_depth": null
+      },
+      "train_seconds": 9.7271,
+      "peak_memory_mb": 11.981,
+      "n_features": 4000,
+      "supports_probability": true
+    },
+    "naive_bayes": {
+      "key": "naive_bayes",
+      "name": "Multinomial Naive Bayes",
+      "cv_f1_spam": 0.9466,
+      "best_params": {
+        "clf__alpha": 0.1
+      },
+      "train_seconds": 8.6802,
+      "peak_memory_mb": 11.98,
+      "n_features": 4000,
+      "supports_probability": true
+    },
+    "knn": {
+      "key": "knn",
+      "name": "K-Nearest Neighbors",
+      "cv_f1_spam": 0.9232,
+      "best_params": {
+        "clf__n_neighbors": 5
+      },
+      "train_seconds": 9.287,
+      "peak_memory_mb": 73.543,
+      "n_features": 4000,
+      "supports_probability": true
+    },
+    "neural_network": {
+      "key": "neural_network",
+      "name": "Neural Network (MLP)",
+      "cv_f1_spam": 0.933,
+      "best_params": {
+        "clf__hidden_layer_sizes": [
+          100
+        ]
+      },
+      "train_seconds": 15.6102,
+      "peak_memory_mb": 25.874,
+      "n_features": 4000,
+      "supports_probability": true
+    },
+    "svm": {
+      "key": "svm",
+      "name": "Support Vector Machine",
+      "cv_f1_spam": 0.9553,
+      "best_params": {
+        "clf__C": 5.0
+      },
+      "train_seconds": 9.5073,
+      "peak_memory_mb": 11.958,
+      "n_features": 4000,
+      "supports_probability": false
+    }
+  }
+}
