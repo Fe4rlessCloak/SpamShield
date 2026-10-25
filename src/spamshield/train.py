@@ -29,6 +29,7 @@ from sklearn.pipeline import Pipeline
 from .constants import (
     CV_FOLDS,
     DATASET_PATH,
+    FIGURES_DIR,
     INVERSE_LABEL_MAP,
     LABEL_MAP,
     MAX_FEATURES,
@@ -275,7 +276,9 @@ def write_training_report(results: dict[str, TrainingResult], bundle: DataBundle
 
 
 def main() -> None:
-    """Train all six models from the command line."""
+    """Train all six models and run the full evaluation pipeline."""
+    from .evaluate import create_figures, evaluate_all, save_metrics, select_best
+
     bundle = prepare_data()
     print(
         f"Dataset: {len(bundle.frame)} unique messages "
@@ -292,6 +295,18 @@ def main() -> None:
     print()
     print(f"Best model by cross-validated spam F1: {results[best_key].name}")
     print(f"Training report written to {report_path}")
+
+    print()
+    print(f"Evaluating on {len(bundle.X_test)} held-out test messages")
+    evaluations = evaluate_all(bundle)
+    csv_path, json_path = save_metrics(evaluations)
+    selected_key = select_best(evaluations)
+    figures = create_figures(evaluations, selected_key=selected_key)
+
+    print()
+    print(f"Selected model (training-only CV spam F1): {evaluations[selected_key].name}")
+    print(f"Metrics written to {csv_path} and {json_path}")
+    print(f"{len(figures)} figures written to {FIGURES_DIR}")
 
 
 if __name__ == "__main__":
