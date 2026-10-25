@@ -47,27 +47,32 @@ class Prediction:
         return self.probability is not None
 
 
-def model_path(key: str, models_dir: str | Path = MODELS_DIR) -> Path:
-    return Path(models_dir) / f"{key}.joblib"
+def model_path(key: str, models_dir: str | Path | None = None) -> Path:
+    """Return the artifact path for ``key``.
+
+    ``models_dir`` is resolved at call time (rather than bound as a default argument) so
+    tests and alternative deployments can point the project at another directory.
+    """
+    return Path(models_dir or MODELS_DIR) / f"{key}.joblib"
 
 
-def is_model_available(key: str, models_dir: str | Path = MODELS_DIR) -> bool:
+def is_model_available(key: str, models_dir: str | Path | None = None) -> bool:
     """Return ``True`` when a trained artifact exists for ``key``."""
     return model_path(key, models_dir).exists()
 
 
-def available_models(models_dir: str | Path = MODELS_DIR) -> list[str]:
+def available_models(models_dir: str | Path | None = None) -> list[str]:
     """Return the keys of all models that have been trained and saved."""
     return [key for key in MODEL_KEYS if is_model_available(key, models_dir)]
 
 
-def load_pipeline(key: str, models_dir: str | Path = MODELS_DIR) -> tuple[Any, dict[str, Any]]:
+def load_pipeline(key: str, models_dir: str | Path | None = None) -> tuple[Any, dict[str, Any]]:
     """Load a fitted pipeline and its metadata for ``key``.
 
     Raises :class:`~spamshield.evaluate.ModelArtifactError` when the artifact is missing
     or unreadable.
     """
-    artifact = load_artifact(key, models_dir)
+    artifact = load_artifact(key, models_dir or MODELS_DIR)
     return artifact["pipeline"], artifact.get("metadata", {})
 
 
@@ -94,7 +99,7 @@ def predict_message(
     text: str,
     key: str,
     *,
-    models_dir: str | Path = MODELS_DIR,
+    models_dir: str | Path | None = None,
 ) -> Prediction:
     """Classify one SMS message with the model identified by ``key``.
 

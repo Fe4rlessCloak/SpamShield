@@ -30,8 +30,8 @@
       "best_params": {
         "clf__C": 5.0
       },
-      "train_seconds": 8.8094,
-      "peak_memory_mb": 12.053,
+      "train_seconds": 8.4956,
+      "peak_memory_mb": 12.045,
       "n_features": 4000,
       "supports_probability": true
     },
@@ -42,8 +42,8 @@
       "best_params": {
         "clf__max_depth": null
       },
-      "train_seconds": 9.7271,
-      "peak_memory_mb": 11.981,
+      "train_seconds": 9.7027,
+      "peak_memory_mb": 11.975,
       "n_features": 4000,
       "supports_probability": true
     },
@@ -54,8 +54,8 @@
       "best_params": {
         "clf__alpha": 0.1
       },
-      "train_seconds": 8.6802,
-      "peak_memory_mb": 11.98,
+      "train_seconds": 8.7731,
+      "peak_memory_mb": 11.981,
       "n_features": 4000,
       "supports_probability": true
     },
@@ -66,8 +66,8 @@
       "best_params": {
         "clf__n_neighbors": 5
       },
-      "train_seconds": 9.287,
-      "peak_memory_mb": 73.543,
+      "train_seconds": 9.2333,
+      "peak_memory_mb": 73.575,
       "n_features": 4000,
       "supports_probability": true
     },
@@ -80,8 +80,8 @@
           100
         ]
       },
-      "train_seconds": 15.6102,
-      "peak_memory_mb": 25.874,
+      "train_seconds": 15.4757,
+      "peak_memory_mb": 25.851,
       "n_features": 4000,
       "supports_probability": true
     },
@@ -92,7 +92,7 @@
       "best_params": {
         "clf__C": 5.0
       },
-      "train_seconds": 9.5073,
+      "train_seconds": 8.5788,
       "peak_memory_mb": 11.958,
       "n_features": 4000,
       "supports_probability": false
